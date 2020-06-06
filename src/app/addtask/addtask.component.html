@@ -1,0 +1,68 @@
+<button mat-dialog-title mat-icon-button [autofocus]="false" [disabled]="process" tabindex="-1"><mat-icon mat-dialog-close>close</mat-icon></button>
+<mat-horizontal-stepper labelPosition="bottom" mat-dialog-content #stepper [linear]="true">
+  <span class="flex-spacer"></span>
+  <button mat-button mat-dialog-close>Cancel</button>
+        <mat-step [stepControl]="taskForm">
+          <form [formGroup]="taskForm">
+            <ng-template matStepLabel>Add Task</ng-template>
+            <mat-form-field>
+              <mat-label>Task</mat-label>
+              <input matInput placeholder="Watch Dark Season 3" formControlName="task" required>
+            </mat-form-field>
+            <div>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="dueForm">
+          <form [formGroup]="dueForm">
+            <ng-template matStepLabel>Set Due Date</ng-template>
+            <mat-form-field>
+              <mat-label>Due Date</mat-label>
+              <input matInput [owlDateTime]="dt" required [min]="startDate" formControlName="due" autocomplete="off" class="trigger" [owlDateTimeTrigger]="dt">
+              <mat-icon matSuffix class="trigger" [owlDateTimeTrigger]="dt">calendar_today</mat-icon>
+              <owl-date-time #dt></owl-date-time>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-stroked-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdForm">
+          <form [formGroup]="thirdForm" (ngSubmit)="addTask()">
+            <ng-template matStepLabel>Set Label & Priority</ng-template>
+            <mat-form-field>
+              <mat-label>Label</mat-label>
+              <mat-select formControlName="label" name="label">
+                <mat-option *ngFor="let single of labels" [value]="single">
+                  {{single}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            &nbsp;&nbsp;&nbsp;
+            <mat-form-field>
+              <mat-label>Priority</mat-label>
+              <mat-select formControlName="priority" name="priority" [(value)]="selected">
+                <mat-select-trigger>{{selected}}</mat-select-trigger>
+                <mat-option value="Low"><i class="w3-text-green material-icons" matPrefix>outlined_flag</i>Low</mat-option>
+                <mat-option value="Normal"><i class="w3-text-orange material-icons" matPrefix>outlined_flag</i>Normal</mat-option>
+                <mat-option value="High"><i class="w3-text-red material-icons" matPrefix>outlined_flag</i>High</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious [disabled]="process">Back</button>
+              <button type="submit" mat-stroked-button color="primary" [disabled]="process && !thirdForm.valid">Add Task</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+            <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+            <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+          </svg>
+          <p>Added Successfully!</p>
+        </mat-step>
+</mat-horizontal-stepper>
+

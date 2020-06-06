@@ -1,0 +1,41 @@
+<div class="w3-margin w3-mobile">
+<mat-list>
+    <mat-list-item *ngFor="let single of todayTask" class="w3-margin-top">
+        <button mat-icon-button (click)="updateTask(single._id,single.status)" class="w3-margin-right">
+            <mat-icon mat-list-icon *ngIf="single.status==1" class="w3-text-gold">star_border</mat-icon>
+            <mat-icon mat-list-icon *ngIf="single.status==2" class="w3-text-gold">star_half</mat-icon>
+        </button>
+        <mat-icon matListIcon class="w3-medium w3-text-green" *ngIf="single.priority == 'Low'">radio_button_unchecked</mat-icon>
+        <mat-icon matListIcon class="w3-medium w3-text-blue" *ngIf="single.priority == 'Normal'">radio_button_unchecked</mat-icon>
+        <mat-icon matListIcon class="w3-medium w3-text-red" *ngIf="single.priority == 'High'">radio_button_unchecked</mat-icon>
+        <div class="w3-row" mat-line>
+            {{single.task}}
+        </div>
+        <div class="w3-row w3-text-gray" mat-line>
+            {{single.due | date:'MMM d, hh:mm a'}} &nbsp;&nbsp;
+            <mat-icon class="w3-small" style="margin-right: -8px;">local_offer</mat-icon>{{single.label}}
+        </div>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>
+<mat-list *ngIf="overdueTask.length != 0">
+    <h3 class="w3-margin-left">Overdue</h3>
+    <mat-list-item *ngFor="let single of overdueTask" class="w3-margin-top"> 
+        <button mat-icon-button (click)="updateTask(single._id,single.status)" class="w3-margin-right">
+            <mat-icon mat-list-icon *ngIf="single.status==1" class="w3-text-gold">star_border</mat-icon>
+            <mat-icon mat-list-icon *ngIf="single.status==2" class="w3-text-gold">star_half</mat-icon>
+        </button>
+        <mat-icon matListIcon class="w3-medium w3-text-green" *ngIf="single.priority == 'Low'">radio_button_unchecked</mat-icon>
+        <mat-icon matListIcon class="w3-medium w3-text-blue" *ngIf="single.priority == 'Normal'">radio_button_unchecked</mat-icon>
+        <mat-icon matListIcon class="w3-medium w3-text-red" *ngIf="single.priority == 'High'">radio_button_unchecked</mat-icon>
+        <div class="w3-row" mat-line>
+            {{single.task}}
+        </div>
+        <div class="w3-row w3-text-gray" mat-line>
+            <mat-icon class="w3-medium w3-text-red" style="margin-right: -8px;">hourglass_empty</mat-icon>{{single.due | date:'MMM d, hh:mm a'}}&nbsp;&nbsp;
+            <mat-icon class="w3-small" style="margin-right: -8px;">local_offer</mat-icon>{{single.label}}
+        </div>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+</mat-list>
+</div>

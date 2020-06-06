@@ -1,0 +1,23 @@
+mat-toolbar{
+    min-height: 8%!important; height: 8% !important;
+}
+mat-sidenav-container { 
+    height: 92%;
+}
+mat-sidenav{min-width:35% !important; }
+@media(min-width:950px)
+{
+    mat-sidenav{min-width:15% !important; }
+}
+mat-form-field{ font-size: 14px;min-height: 5%!important; height: 5% !important;}
+.fill-space {
+    flex: 1 1 auto;
+}
+button{
+    outline: none;
+}
+.active {
+    font-weight: bold;
+    color: #121212 !important;
+    background: rgba(0, 0, 0, 0.04);
+}

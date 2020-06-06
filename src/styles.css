@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-tab-labels {
+    justify-content: center;
+}
+.remove-border-bottom .mat-tab-header {
+    border-bottom: none;
+}
+button{
+    outline: none;
+}
+.center {
+    text-align: center !important;
+}

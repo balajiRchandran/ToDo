@@ -1,0 +1,22 @@
+<div class="w3-margin w3-mobile">
+    <mat-list *ngFor="let grp of allTask" class="w3-margin-top">
+        <div mat-subheader>{{grp[0].due | date:'MMM d'}}</div>
+        <mat-list-item *ngFor="let single of grp" class="w3-margin-top">
+            <button mat-icon-button class="w3-margin-right" (click)="deleteTask(single._id)">
+                <mat-icon>close</mat-icon>
+            </button>
+            <mat-icon matListIcon class="w3-medium w3-text-green" *ngIf="single.priority == 'Low'">radio_button_unchecked</mat-icon>
+            <mat-icon matListIcon class="w3-medium w3-text-blue" *ngIf="single.priority == 'Normal'">radio_button_unchecked</mat-icon>
+            <mat-icon matListIcon class="w3-medium w3-text-red" *ngIf="single.priority == 'High'">radio_button_unchecked</mat-icon>
+            <div class="w3-row" mat-line>
+                {{single.task}}
+            </div>
+            <div class="w3-row w3-text-gray" mat-line>
+                {{single.due | date:'MMM d, hh:mm a'}} &nbsp;&nbsp;
+                <mat-icon class="w3-small" style="margin-right: -8px;">local_offer</mat-icon>{{single.label}}
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</div>
+    
