@@ -1,9 +1,9 @@
 <mat-toolbar color="primary"  style="justify-content:center;align-items:center;">
   <mat-toolbar-row>
     <button mat-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
-  <h3>ToDo</h3>
+    <button mat-icon-button routerLink="/"><mat-icon>home</mat-icon></button>
   <span class="fill-space"></span>
-  <button mat-icon-button (click)="addTask()" [disableRipple]="true">
+  <button mat-icon-button (click)="addTask()" [disableRipple]="true" class="w3-margin-right">
     <mat-icon >add_circle</mat-icon>
   </button>
   <!-- <form class="w3-margin-top" novalidate [formGroup]="searchForm">
@@ -17,7 +17,7 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav #sidenav [opened]="screenWidth > 950" [mode]="(screenWidth > 950) ? 'side' : 'over'"  fullscreen >
-      <img src="assets/images/chandler.jpg" class="w3-circle w3-margin-top" style="width:56px;margin-right: auto; margin-left: auto; display: block;"><br>
+      <img src="assets/images/chandler.jpg" class="w3-circle w3-margin-top" style="width:66px;margin-right: auto; margin-left: auto; display: block;"><br>
       <p style="text-align: center;">Hello, <strong>{{currentUser}} !</strong></p>
       <hr>
       <mat-nav-list>
@@ -26,15 +26,18 @@
         <a mat-list-item routerLinkActive="active" routerLink="/Archived"><mat-icon>archive</mat-icon>Archived</a>
       </mat-nav-list>
       <hr>
-      <form [formGroup]="labelForm" class="w3-margin">
+      <form [formGroup]="labelForm" class="w3-margin-left w3-margin-right">
         <mat-form-field>
-          <mat-label>Add Label</mat-label>
+          <mat-label>Add Task Label</mat-label>
           <input matInput formControlName="label">
-          <button mat-icon-button matSuffix class="w3-xlarge" (click)="addLabel()">
+          <button mat-icon-button matSuffix class="w3-xlarge" (click)="addLabel()" [disabled]="checkLabel">
             <mat-icon>library_add</mat-icon>
           </button>
         </mat-form-field>
       </form>
+      <mat-nav-list>
+        <a mat-list-item (click)="confirmLogout()"><mat-icon>exit_to_app</mat-icon>Logout</a>
+      </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet (activate)="onActivate($event)" ></router-outlet>

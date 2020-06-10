@@ -1,0 +1,58 @@
+<div mat-dialog-title>
+    <button mat-icon-button [autofocus]="false" tabindex="-1"><mat-icon mat-dialog-close>close</mat-icon></button>
+</div>
+<div mat-dialog-content tabindex="-1">
+  <mat-accordion multi="true">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Date
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-icon class="w3-medium">calendar_today</mat-icon>
+      <input width="100%" [(ngModel)]="selectedMoments" [selectMode]="'range'" [min]="todayDate"
+               [owlDateTimeTrigger]="dtPicker3" [owlDateTime]="dtPicker3">
+    <owl-date-time #dtPicker3></owl-date-time>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel *ngIf="labels" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Label
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="3" rowHeight="30px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <span class="text-inside-grid"><mat-checkbox [(ngModel)]="allLabel">All</mat-checkbox></span>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let single of labels">
+            <span class="text-inside-grid"><mat-checkbox [(ngModel)]="single.index">{{single.lab}}</mat-checkbox></span>
+          </mat-grid-tile>
+        </mat-grid-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              Priority
+          </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="30px">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <span class="text-inside-grid"><mat-checkbox [(ngModel)]="allPrior">All</mat-checkbox></span>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <span class="text-inside-grid"><mat-checkbox [(ngModel)]="priority[0]">Low</mat-checkbox></span>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <span class="text-inside-grid"><mat-checkbox  [(ngModel)]="priority[1]">Normal</mat-checkbox></span>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <span class="text-inside-grid"><mat-checkbox  [(ngModel)]="priority[2]">High</mat-checkbox></span>
+        </mat-grid-tile>
+      </mat-grid-list>
+  </mat-expansion-panel>
+  <mat-action-row>
+    <button  mat-stroked-button color="primary" mat-dialog-close (click)="changeVar()">Filter Task</button>
+  </mat-action-row>
+  </mat-accordion>
+</div>

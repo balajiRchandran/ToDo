@@ -45,14 +45,14 @@
               <mat-label>Priority</mat-label>
               <mat-select formControlName="priority" name="priority" [(value)]="selected">
                 <mat-select-trigger>{{selected}}</mat-select-trigger>
-                <mat-option value="Low"><i class="w3-text-green material-icons" matPrefix>outlined_flag</i>Low</mat-option>
-                <mat-option value="Normal"><i class="w3-text-orange material-icons" matPrefix>outlined_flag</i>Normal</mat-option>
-                <mat-option value="High"><i class="w3-text-red material-icons" matPrefix>outlined_flag</i>High</mat-option>
+                <mat-option value="Low"><i class="w3-text-green material-icons" matPrefix>flag</i>Low</mat-option>
+                <mat-option value="Normal"><i class="w3-text-orange material-icons" matPrefix>flag</i>Normal</mat-option>
+                <mat-option value="High"><i class="w3-text-red material-icons" matPrefix>flag</i>High</mat-option>
               </mat-select>
             </mat-form-field>
             <div>
               <button mat-button matStepperPrevious [disabled]="process">Back</button>
-              <button type="submit" mat-stroked-button color="primary" [disabled]="process && !thirdForm.valid">Add Task</button>
+              <button type="submit" mat-stroked-button color="primary" [disabled]="process">Add Task</button>
             </div>
           </form>
         </mat-step>

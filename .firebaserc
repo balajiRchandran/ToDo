@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "todo-11921": {
+      "hosting": {
+        "frontend": [
+          "todo-11921"
+        ]
+      }
+    }
+  }
+}

@@ -23,7 +23,7 @@
                                     <input matInput formControlName="password" type="password" required>
                                   </mat-form-field>
                                 <br>
-                            <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+                            <button type="submit" mat-raised-button color="primary" [disabled]="!loginForm.valid || btnClicked">Login</button>
                           </form>
                 </mat-tab>
                 <mat-tab label="Register">
@@ -50,12 +50,10 @@
                                 <input matInput formControlName="password" type="password" required>
                               </mat-form-field>
                               <br>
-                        <button type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid">Register</button>
+                        <button type="submit" mat-raised-button color="primary" [disabled]="!registerForm.valid || btnClicked">Register</button>
                       </form>
                 </mat-tab>
               </mat-tab-group>
         </mat-card-content>
-        
-    </mat-card>
-    
+    </mat-card>  
 </div>

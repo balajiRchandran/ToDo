@@ -1,3 +1,7 @@
+<div *ngIf="allTask.length ==0">
+    <img src="/assets/images/notask.png" style="width:110px;margin-right: auto; margin-left: auto; display: block;">
+    <p style="text-align: center;">No Tasks to show here!</p>
+</div>
 <div class="w3-margin w3-mobile">
     <mat-list *ngFor="let grp of allTask" class="w3-margin-top">
         <div mat-subheader>{{grp[0].due | date:'MMM d'}}</div>
@@ -19,5 +23,6 @@
             <mat-divider></mat-divider>
         </mat-list-item>
     </mat-list>
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 </div>
     

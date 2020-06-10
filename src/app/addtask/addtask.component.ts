@@ -1,10 +1,11 @@
-import { Component, OnInit ,ViewChild, Output} from '@angular/core';
+import { Component, OnInit ,ViewChild, Output, OnDestroy} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {AddtaskService} from '../services/addtask.service'
 import {GlobalService} from '../shared/global.service'
 import {MatStepper} from '@angular/material/stepper'
 import {MatDialogRef} from '@angular/material/dialog'
 import { EventEmitter } from 'events';
+import {JwttokenService} from '../services/jwttoken.service'
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -23,7 +24,8 @@ export class AddtaskComponent implements OnInit {
   labels:string[]
   priority=["Low","Normal","High"]
   startDate = new Date();
-  constructor(private fb:FormBuilder,
+  constructor(private local:JwttokenService,
+    private fb:FormBuilder,
     private global:GlobalService,
     private addTaskService:AddtaskService,
     private dialogRef:MatDialogRef<AddtaskComponent>) {
@@ -67,6 +69,7 @@ export class AddtaskComponent implements OnInit {
         })
    }
   ngOnInit(): void {
+    console.log(typeof this.global.sharedMessage)
     this.global.sharedMessage.subscribe(message => {
       this.currentUser= message
       this.addTaskService.getLabel(message).subscribe(a=>{

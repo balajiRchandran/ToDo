@@ -10,9 +10,9 @@ import {Task} from '../shared/Task'
 })
 export class TodayService {
 
-  constructor(private http: HttpClient,
+  constructor(
+    private http: HttpClient,
     private processHTTPMsgService: ProcessHTTPMsgService) { }
-
     todayTask(u): Observable<Task[]> {
       return this.http.get<Task[]>(baseURL + 'today/'+u+'/')
         .pipe(catchError(this.processHTTPMsgService.handleError));
@@ -23,6 +23,10 @@ export class TodayService {
     }
     upcomingTask(u) : Observable<Task[]>{
       return this.http.get<Task[]>(baseURL+'upcoming/'+u+'/')
+        .pipe(catchError(this.processHTTPMsgService.handleError))
+    }
+    allTasks(u) : Observable<Task[]>{
+      return this.http.get<Task[]>(baseURL+'tasks/'+u+'/')
         .pipe(catchError(this.processHTTPMsgService.handleError))
     }
     archivedTask(u) : Observable<Task[]>{

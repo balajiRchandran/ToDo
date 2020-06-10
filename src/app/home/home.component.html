@@ -2,12 +2,15 @@
     <img src="/assets/images/notask.png" style="width:110px;margin-right: auto; margin-left: auto; display: block;">
     <p style="text-align: center;">No Tasks to show here!</p>
 </div>
-<div class="w3-margin w3-mobile">
-    <mat-list *ngFor="let grp of allTask" class="w3-margin-top">
-        <div mat-subheader>{{grp[0].due | date:'MMM d'}}</div>
-        <mat-list-item *ngFor="let single of grp" class="w3-margin-top">
-            <button mat-icon-button class="w3-margin-right" (click)="deleteTask(single._id)">
-                <mat-icon>close</mat-icon>
+<div class="container text-right w3-margin-right" *ngIf="masterTask.length !=0">
+    <button class=" w3-margin-right w3-margin-top" mat-stroked-button (click)="openFilter()"><mat-icon>filter_list</mat-icon></button>
+</div>
+<div class="w3-margin-left w3-margin-right w3-mobile">
+    <mat-list>
+        <mat-list-item *ngFor="let single of allTask" class="w3-margin-top">
+            <button mat-icon-button (click)="updateTask(single._id,single.status)" class="w3-margin-right">
+                <mat-icon mat-list-icon *ngIf="single.status==1" class="w3-text-gold">star_border</mat-icon>
+                <mat-icon mat-list-icon *ngIf="single.status==2" class="w3-text-gold">star_half</mat-icon>
             </button>
             <mat-icon matListIcon class="w3-medium w3-text-green" *ngIf="single.priority == 'Low'">radio_button_unchecked</mat-icon>
             <mat-icon matListIcon class="w3-medium w3-text-blue" *ngIf="single.priority == 'Normal'">radio_button_unchecked</mat-icon>
@@ -16,6 +19,7 @@
                 {{single.task}}
             </div>
             <div class="w3-row w3-text-gray" mat-line>
+                <mat-icon *ngIf="isOverdue(single.due)" class="w3-medium w3-text-red" style="margin-right: -8px;">hourglass_empty</mat-icon>
                 {{single.due | date:'MMM d, hh:mm a'}} &nbsp;&nbsp;
                 <mat-icon class="w3-small" style="margin-right: -8px;">local_offer</mat-icon>{{single.label}}
             </div>

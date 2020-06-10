@@ -18,6 +18,9 @@
 mat-form-field {
   width: 80%;
 }
+::ng-deep .mat-spinner circle{
+  stroke:#0cc20c;
+}
 mat-card{justify-content:center;align-items:center; padding-right: 5%; padding-left: 5%;}
 @media(max-width:600px)
 {
